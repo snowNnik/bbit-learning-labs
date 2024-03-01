@@ -24,10 +24,11 @@ def main(ticker: str, price: float, sector: str) -> None:
     #
     #                       WRITE CODE HERE!!!
     #
-    routingKey = "STOCK." + ticker + "." + sector
+    #routingKey = "STOCK." + ticker + "." + sector
 
 
-    producer = mqProducer(routing_key=routingKey,exchange_name="Tech Lab Topic Exchange")
+    #producer = mqProducer(routing_key=routingKey,exchange_name="Tech Lab Topic Exchange")
+    producer = mqProducer(exchange_name="Tech Lab Topic Exchange")
 
 
     # Implement Logic To Create a message variable from the variable EG. "TSLA price is now $500" - Step 3
@@ -36,7 +37,7 @@ def main(ticker: str, price: float, sector: str) -> None:
     #
     message = ticker + " price is now $" + str(price)
     
-    producer.publishOrder(message)
+    producer.publishOrder(ticker, price, sector)
 
 if __name__ == "__main__":
 
