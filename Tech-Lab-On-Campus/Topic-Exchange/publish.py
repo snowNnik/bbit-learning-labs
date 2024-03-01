@@ -46,8 +46,9 @@ if __name__ == "__main__":
     #                       WRITE CODE HERE!!!
     #
     info = sys.argv[:]
-    ticker = info[0]
-    price = info[1]
-    sector = info[2]
+    print(info)
+    ticker = info[1]
+    price = info[2]
+    sector = info[3]
 
     sys.exit(main(ticker,price,sector))
