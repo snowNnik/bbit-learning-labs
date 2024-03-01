@@ -4,7 +4,7 @@ import os
 import sys
 
 class mqProducer(mqProducerInterface):
-    def __init__(self, routing_key: str, exchange_name: str) -> None:
+    def __init__(self, exchange_name: str, routing_key: str) -> None:
         self.routing_key = routing_key
         self.exchange_name = exchange_name
         self.setupRMQConnection()
@@ -22,21 +22,15 @@ class mqProducer(mqProducerInterface):
 
     def publishOrder(self, message: str) -> None:
         # Create Appropiate Topic String
-        #info = sys.argv[:]
-        #ticker = info[0]
-        #price = info[1]
-        #sector = info[2]
 
         # Send serialized message or String
+        self.channel.basic_publish(
+            exchange=self.exchange_name,
+            routing_key=self.routing_key,
+            body=message,
+        )
 
         # Print Confirmation
-        
-        # Basic Publish to Exchange
-        #self.channel.basic_publish(
-        #    exchange=self.exchange_name,
-        #    routing_key=self.routing_key,
-        #    body=message,
-        #)
 
         # Close Channel
         self.channel.close()
